@@ -245,6 +245,8 @@ local function unlimitedAmmo()
     end)
 end
 
+local autoExecute = true
+
 local function returnToLobby()
     game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("RETURN_TO_LOBBY"):FireServer()
 end
