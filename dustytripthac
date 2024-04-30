@@ -1,3 +1,20 @@
+local autoExecute = true -- Set this to true or false as needed
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ThacG/DustyTripThac/main/dustytripthac"))()
+
+local queue_on_teleport = queue_on_teleport or syn.queue_on_teleport or fluxus.queue_on_teleport or function(...) return ... end
+
+game.Players.LocalPlayer.OnTeleport:Connect(function(state)
+    if state ~= Enum.TeleportState.Started and state ~= Enum.TeleportState.InProgress then return end
+    if autoExecute then
+        queue_on_teleport([[
+            repeat task.wait() until game:IsLoaded()
+            wait(2)
+            if getgenv().Executed then return end executionsloadstring(game:HttpGet("https://raw.githubusercontent.com/ThacG/DustyTripThac/main/dustytripthac"))()
+        ]])
+    end
+end)
+
 local gui = Instance.new("ScreenGui")
 gui.Name = "ScriptControls"
 gui.Parent = game.Players.LocalPlayer.PlayerGui
