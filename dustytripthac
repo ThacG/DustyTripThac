@@ -142,7 +142,7 @@ end
 
 local function stopScript()
     running = false
-    lastStoppedChunk = chunkNumber
+    lastStoppedChunk = chunkNumber - 5
 end
 
 local function goHome()
