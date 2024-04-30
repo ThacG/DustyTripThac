@@ -249,6 +249,7 @@ local autoExecute = true
 
 local function returnToLobby()
     game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("RETURN_TO_LOBBY"):FireServer()
+    autoExecute = true
 end
 
 local function antiAfk()
