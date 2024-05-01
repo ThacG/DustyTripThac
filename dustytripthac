@@ -150,14 +150,14 @@ local function startScript()
         while running do
             local sandstorm = game.Workspace:FindFirstChild("SandStormEffect")
             if sandstorm then
-                if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health < 20 then
+                if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health < 25 then
                     chunkNumber = chunkNumber - 5
                     lastStoppedChunk = chunkNumber - 5
                     rootPart.CFrame = sandstormCFrame
                     while game.Workspace:FindFirstChild("SandStormEffect") do
                     repeat
                         wait(0.1)
-                    until player.Character.Humanoid.Health > 50
+                    until player.Character.Humanoid.Health > 40
                         wait(0.1)
                     end
                 else
@@ -175,13 +175,13 @@ local function startScript()
                     wait(0.1)
                 end
             else
-                if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health < 20 then
+                if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health < 25 then
                     chunkNumber = chunkNumber - 5
                     lastStoppedChunk = chunkNumber - 5
                     rootPart.CFrame = sandstormCFrame
                     repeat
                         wait(0.1)
-                    until player.Character.Humanoid.Health > 50
+                    until player.Character.Humanoid.Health > 40
                 else
                     while not game.Workspace.points:FindFirstChild(tostring(chunkNumber)) do
                         wait(0.01)
