@@ -341,6 +341,9 @@ local function returnToLobby()
 end
 
 local function teleporttoShop_99()
+    running = false
+    wait(0.5)
+    lastStoppedChunk = chunkNumber - 5
     local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
     local workspace = game:GetService("Workspace")
     local buildingsFolder = workspace:WaitForChild("modelspoint")
@@ -366,6 +369,9 @@ local function teleporttoShop_99()
 end
 
 local function teleporttoShop_Dan()
+    running = false
+    wait(0.5)
+    lastStoppedChunk = chunkNumber - 5
     local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
     local workspace = game:GetService("Workspace")
     local buildingsFolder = workspace:WaitForChild("modelspoint")
@@ -391,6 +397,9 @@ local function teleporttoShop_Dan()
 end
 
 local function teleporttoChurch()
+    running = false
+    wait(0.5)
+    lastStoppedChunk = chunkNumber - 5
     local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
     local workspace = game:GetService("Workspace")
 
