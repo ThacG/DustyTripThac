@@ -207,10 +207,12 @@ local function stopScript()
 end
 
 local function goHome()
-    running = false
-    wait(0.5)
-    lastStoppedChunk = chunkNumber - 5
-    rootPart.CFrame = CFrame.new(204.360123, 3.51325297, 7849.25732, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    if not inLobby() then
+        running = false
+        wait(0.5)
+        lastStoppedChunk = chunkNumber - 5
+        rootPart.CFrame = CFrame.new(204.360123, 3.51325297, 7849.25732, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    end
 end
 
 local function toggleVisibility()
