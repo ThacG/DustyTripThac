@@ -23,8 +23,8 @@ gui.Name = "ScriptControls"
 gui.Parent = game.Players.LocalPlayer.PlayerGui
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 210, 0, 180)
-frame.Position = UDim2.new(0.5, -100, 0.9, -100)
+frame.Size = UDim2.new(0, 210, 0, 280)
+frame.Position = UDim2.new(0.5, -100, 0.9, -20)
 frame.AnchorPoint = Vector2.new(0.5, 1)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.BackgroundTransparency = 0.5
@@ -96,26 +96,33 @@ ammoButton.Text = "Unlimited Ammo (4)"
 ammoButton.TextSize = 12
 ammoButton.Parent = frame
 
-local ammoButton = Instance.new("TextButton")
-ammoButton.Size = UDim2.new(0, 200, 0, 16)
-ammoButton.Position = UDim2.new(0.5, -100, 0, 170)
-ammoButton.Text = "Teleport To 99 Shop (5)"
-ammoButton.TextSize = 12
-ammoButton.Parent = frame
+local shopButton_99 = Instance.new("TextButton")
+shopButton_99.Size = UDim2.new(0, 200, 0, 16)
+shopButton_99.Position = UDim2.new(0.5, -100, 0, 170)
+shopButton_99.Text = "Teleport To 99 Shop (5)"
+shopButton_99.TextSize = 12
+shopButton_99.Parent = frame
 
-local ammoButton = Instance.new("TextButton")
-ammoButton.Size = UDim2.new(0, 200, 0, 16)
-ammoButton.Position = UDim2.new(0.5, -100, 0, 200)
-ammoButton.Text = "Teleport To Dan's Shop (6)"
-ammoButton.TextSize = 12
-ammoButton.Parent = frame
+local shopButton_Dan = Instance.new("TextButton")
+shopButton_Dan.Size = UDim2.new(0, 200, 0, 16)
+shopButton_Dan.Position = UDim2.new(0.5, -100, 0, 200)
+shopButton_Dan.Text = "Teleport To Dan's Shop (6)"
+shopButton_Dan.TextSize = 12
+shopButton_Dan.Parent = frame
 
-local ammoButton = Instance.new("TextButton")
-ammoButton.Size = UDim2.new(0, 200, 0, 16)
-ammoButton.Position = UDim2.new(0.5, -100, 0, 230)
-ammoButton.Text = "Teleport To Church (7)"
-ammoButton.TextSize = 12
-ammoButton.Parent = frame
+local teleporttochurchButton = Instance.new("TextButton")
+teleporttochurchButton.Size = UDim2.new(0, 200, 0, 16)
+teleporttochurchButton.Position = UDim2.new(0.5, -100, 0, 230)
+teleporttochurchButton.Text = "Teleport To Church (7)"
+teleporttochurchButton.TextSize = 12
+teleporttochurchButton.Parent = frame
+
+local thacButton = Instance.new("TextButton")
+thacButton.Size = UDim2.new(0, 200, 0, 16)
+thacButton.Position = UDim2.new(0.5, -100, 0, 260)
+thacButton.Text = "Made By thacy"
+thacButton.TextSize = 12
+thacButton.Parent = frame
 
 local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
 local workspace = game:GetService("Workspace")
@@ -333,6 +340,73 @@ local function returnToLobby()
     game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("RETURN_TO_LOBBY"):FireServer()
 end
 
+local function teleporttoShop_99()
+    local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local workspace = game:GetService("Workspace")
+    local buildingsFolder = workspace:WaitForChild("modelspoint")
+
+    local function teleportToShop(buildingModel)
+        local building = buildingModel:FindFirstChild("building")
+        if building then
+            local buyLever = building:FindFirstChild("BUY_LEVER")
+            if buyLever then
+                local part = buyLever:FindFirstChild("Part")
+                if part and part:IsA("BasePart") then
+                    rootPart.CFrame = CFrame.new(part.Position)
+                end
+            end
+        end
+    end
+
+    for _, buildingModel in ipairs(buildingsFolder:GetChildren()) do
+        if buildingModel:IsA("Model") then
+            teleportToShop(buildingModel)
+        end
+    end
+end
+
+local function teleporttoShop_Dan()
+    local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local workspace = game:GetService("Workspace")
+    local buildingsFolder = workspace:WaitForChild("modelspoint")
+
+    local function teleportToShop(buildingModel)
+        local building = buildingModel:FindFirstChild("building")
+        if building then
+            local danModel = building:FindFirstChild("Price")
+            if danModel then
+                local headPart = danModel:FindFirstChild("Signs")
+                if headPart and headPart:IsA("BasePart") then
+                    rootPart.CFrame = CFrame.new(headPart.Position)
+                end
+            end
+        end
+    end
+
+    for _, buildingModel in ipairs(buildingsFolder:GetChildren()) do
+        if buildingModel:IsA("Model") then
+            teleportToShop(buildingModel)
+        end
+    end
+end
+
+local function teleporttoChurch()
+    local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local workspace = game:GetService("Workspace")
+
+    local function teleportToVampireHead()
+        local vampireModel = workspace:FindFirstChild("Vampire")
+        if vampireModel and vampireModel:IsA("Model") then
+            local headPart = vampireModel:FindFirstChild("Head")
+            if headPart and headPart:IsA("BasePart") then
+                rootPart.CFrame = CFrame.new(headPart.Position)
+            end
+        end
+    end
+
+    teleportToVampireHead()
+end
+
 local function antiAfk()
     local vu = game:GetService("VirtualUser")
     game:GetService("Players").LocalPlayer.Idled:Connect(function()
@@ -354,7 +428,7 @@ local function destroyTornado()
 end
 
 antiAfk()
-destroyTornado()
+coroutine.wrap(destroyTornado)()
 
 startButton.MouseButton1Click:Connect(startScript)
 stopButton.MouseButton1Click:Connect(stopScript)
@@ -365,6 +439,9 @@ teleportGunsButton.MouseButton1Click:Connect(teleportGuns)
 teleportRareButton.MouseButton1Click:Connect(teleportRareItems)
 ammoButton.MouseButton1Click:Connect(unlimitedAmmo)
 lobbyButton.MouseButton1Click:Connect(returnToLobby)
+shopButton_99.MouseButton1Click:Connect(teleporttoShop_99)
+shopButton_Dan.MouseButton1Click:Connect(teleporttoShop_Dan)
+teleporttochurchButton.MouseButton1Click:Connect(teleporttoChurch)
 
 game:GetService("UserInputService").InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.U then
@@ -383,6 +460,12 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
         teleportRareItems()
     elseif input.KeyCode == Enum.KeyCode.Four then
         unlimitedAmmo()
+    elseif input.KeyCode == Enum.KeyCode.Five then
+        teleporttoShop_99()
+    elseif input.KeyCode == Enum.KeyCode.Six then
+        teleporttoShop_Dan()
+    elseif input.KeyCode == Enum.KeyCode.Seven then
+        teleporttoChurch()
     elseif input.KeyCode == Enum.KeyCode.L then
         returnToLobby()
     end
