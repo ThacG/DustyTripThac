@@ -117,6 +117,20 @@ teleporttochurchButton.Text = "Teleport To Church (7)"
 teleporttochurchButton.TextSize = 12
 teleporttochurchButton.Parent = frame
 
+local teleportValuableButton = Instance.new("TextButton")
+teleportValuableButton.Size = UDim2.new(0, 200, 0, 16)
+teleportValuableButton.Position = UDim2.new(0.5, -100, 0, 260)
+teleportValuableButton.Text = "Teleport Valuable Items (8)"
+teleportValuableButton.TextSize = 12
+teleportValuableButton.Parent = frame
+
+local teleportCapsButton = Instance.new("TextButton")
+teleportCapsButton.Size = UDim2.new(0, 200, 0, 16)
+teleportCapsButton.Position = UDim2.new(0.5, -100, 0, 290)
+teleportCapsButton.Text = "Teleport Bottle Caps (9)"
+teleportCapsButton.TextSize = 12
+teleportCapsButton.Parent = frame
+
 local thacButton = Instance.new("TextButton")
 thacButton.Size = UDim2.new(0, 200, 0, 16)
 thacButton.Position = UDim2.new(0.5, -100, 0, 260)
@@ -315,6 +329,34 @@ local function teleportRareItems()
     teleportObjects("Raygun")
 end
 
+local function teleportValuable()
+    teleportObjects("axe")
+    teleportObjects("Shield")
+    teleportObjects("vaz")
+    teleportObjects("Katana")
+    teleportObjects("RadioactiveBarrel")
+    teleportObjects("Keyboard")
+    teleportObjects("Skateboard")
+    teleportObjects("Cone")
+    teleportObjects("Bowlball")
+    teleportObjects("Brick")
+    teleportObjects("Pizza")
+    teleportObjects("AK47")
+    teleportObjects("PumpShotgun")
+    teleportObjects("RPG")
+    teleportObjects("Mac10")
+    teleportObjects("Pistol")
+end
+
+local function teleportCaps()
+    teleportObjects("BottleCap")
+    teleportObjects("5stack")
+    teleportObjects("5Pile")
+    teleportObjects("10pile")
+    teleportObjects("15Pile")
+    teleportObjects("20pile")
+end
+
 local function unlimitedAmmo()
     for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
         if v.Name == "Raygun" or v.Name == "BalloonGun" or v.Name == "Red PaintballGun" or v.Name == "Pink PaintballGun" or v.Name == "Blue PaintballGun" or v.Name == "Yellow PaintballGun" or v.Name == "Green PaintballGun" or v.Name == "Pistol" or v.Name == "AK47" or v.Name == "GOLDAK47" or v.Name == "Mac10" or v.Name == "PumpShotgun" or v.Name == "RPG" then
@@ -449,6 +491,8 @@ lobbyButton.MouseButton1Click:Connect(returnToLobby)
 shopButton_99.MouseButton1Click:Connect(teleporttoShop_99)
 shopButton_Dan.MouseButton1Click:Connect(teleporttoShop_Dan)
 teleporttochurchButton.MouseButton1Click:Connect(teleporttoChurch)
+teleportValuableButton.MouseButton1Click:Connect(teleportValuable)
+teleportCapsButton.MouseButton1Click:Connect(teleportCaps)
 
 game:GetService("UserInputService").InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.U then
@@ -473,6 +517,10 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
         teleporttoShop_Dan()
     elseif input.KeyCode == Enum.KeyCode.Seven then
         teleporttoChurch()
+    elseif input.KeyCode == Enum.KeyCode.Eight then
+        teleportValuable()
+    elseif input.KeyCode == Enum.KeyCode.Nine then
+        teleportCaps()
     elseif input.KeyCode == Enum.KeyCode.L then
         returnToLobby()
     end
