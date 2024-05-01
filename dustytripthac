@@ -23,7 +23,7 @@ gui.Name = "ScriptControls"
 gui.Parent = game.Players.LocalPlayer.PlayerGui
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 210, 0, 270)
+frame.Size = UDim2.new(0, 210, 0, 180)
 frame.Position = UDim2.new(0.5, -100, 0.9, -100)
 frame.AnchorPoint = Vector2.new(0.5, 1)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
