@@ -1,4 +1,6 @@
 local autoExecute = true
+autoExecuteScript = autoExecuteScript or true
+autoExecute = autoExecuteScript
 
 local queue_on_teleport = queue_on_teleport or syn.queue_on_teleport or fluxus.queue_on_teleport or function(...) return ... end
 
