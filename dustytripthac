@@ -63,7 +63,7 @@ lobbyButton.Parent = frame
 
 local toggleButton = Instance.new("TextButton")
 toggleButton.Size = UDim2.new(0, 200, 0, 16)
-toggleButton.Position = UDim2.new(0.5, -100, 0.07, 0) -- Adjusted position
+toggleButton.Position = UDim2.new(0.5, -100, 1, -16)
 toggleButton.Text = "Open GUI (Y)"
 toggleButton.TextSize = 12
 toggleButton.Parent = gui
@@ -95,27 +95,6 @@ ammoButton.Position = UDim2.new(0.5, -100, 0, 140)
 ammoButton.Text = "Unlimited Ammo (4)"
 ammoButton.TextSize = 12
 ammoButton.Parent = frame
-
-local teleportMachineShopButton = Instance.new("TextButton") -- New button
-teleportMachineShopButton.Size = UDim2.new(0, 200, 0, 16)
-teleportMachineShopButton.Position = UDim2.new(0.5, -100, 0, 170)
-teleportMachineShopButton.Text = "Teleport To Machine Shop (5)"
-teleportMachineShopButton.TextSize = 12
-teleportMachineShopButton.Parent = frame
-
-local teleportDansShopButton = Instance.new("TextButton") -- New button
-teleportDansShopButton.Size = UDim2.new(0, 200, 0, 16)
-teleportDansShopButton.Position = UDim2.new(0.5, -100, 0, 200)
-teleportDansShopButton.Text = "Teleport To Dan's Shop (6)"
-teleportDansShopButton.TextSize = 12
-teleportDansShopButton.Parent = frame
-
-local teleportChurchButton = Instance.new("TextButton") -- New button
-teleportChurchButton.Size = UDim2.new(0, 200, 0, 16)
-teleportChurchButton.Position = UDim2.new(0.5, -100, 0, 230)
-teleportChurchButton.Text = "Teleport To Church (7)"
-teleportChurchButton.TextSize = 12
-teleportChurchButton.Parent = frame
 
 local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
 local workspace = game:GetService("Workspace")
@@ -354,18 +333,6 @@ teleportRareButton.MouseButton1Click:Connect(teleportRareItems)
 ammoButton.MouseButton1Click:Connect(unlimitedAmmo)
 lobbyButton.MouseButton1Click:Connect(returnToLobby)
 
-teleportMachineShopButton.MouseButton1Click:Connect(function()
-    teleportToShop("MachineShopModel")
-end)
-
-teleportDansShopButton.MouseButton1Click:Connect(function()
-    teleportToShop("DansShopModel")
-end)
-
-teleportChurchButton.MouseButton1Click:Connect(function()
-    teleportToVampireHead()
-end)
-
 game:GetService("UserInputService").InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.U then
         startScript()
@@ -383,12 +350,6 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
         teleportRareItems()
     elseif input.KeyCode == Enum.KeyCode.Four then
         unlimitedAmmo()
-    elseif input.KeyCode == Enum.KeyCode.Five then
-        teleportToShop("MachineShopModel")
-    elseif input.KeyCode == Enum.KeyCode.Six then
-        teleportToShop("DansShopModel")
-    elseif input.KeyCode == Enum.KeyCode.Seven then
-        teleportToVampireHead()
     elseif input.KeyCode == Enum.KeyCode.L then
         returnToLobby()
     end
