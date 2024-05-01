@@ -1,4 +1,4 @@
-local autoExecute = true -- Set this to true or false as needed
+local autoExecute = %s
 
 local queue_on_teleport = queue_on_teleport or syn.queue_on_teleport or fluxus.queue_on_teleport or function(...) return ... end
 
