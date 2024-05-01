@@ -23,7 +23,7 @@ gui.Name = "ScriptControls"
 gui.Parent = game.Players.LocalPlayer.PlayerGui
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 210, 0, 180)
+frame.Size = UDim2.new(0, 210, 0, 250)
 frame.Position = UDim2.new(0.5, -100, 0.9, -100)
 frame.AnchorPoint = Vector2.new(0.5, 1)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -63,7 +63,7 @@ lobbyButton.Parent = frame
 
 local toggleButton = Instance.new("TextButton")
 toggleButton.Size = UDim2.new(0, 200, 0, 16)
-toggleButton.Position = UDim2.new(0.5, -100, 1, -16)
+toggleButton.Position = UDim2.new(0.5, -100, 1, -32)
 toggleButton.Text = "Open GUI (Y)"
 toggleButton.TextSize = 12
 toggleButton.Parent = gui
@@ -95,6 +95,27 @@ ammoButton.Position = UDim2.new(0.5, -100, 0, 140)
 ammoButton.Text = "Unlimited Ammo (4)"
 ammoButton.TextSize = 12
 ammoButton.Parent = frame
+
+local teleportMachineShopButton = Instance.new("TextButton")
+teleportMachineShopButton.Size = UDim2.new(0, 200, 0, 16)
+teleportMachineShopButton.Position = UDim2.new(0.5, -100, 0, 170)
+teleportMachineShopButton.Text = "Teleport To Machine Shop (5)"
+teleportMachineShopButton.TextSize = 12
+teleportMachineShopButton.Parent = frame
+
+local teleportDansShopButton = Instance.new("TextButton")
+teleportDansShopButton.Size = UDim2.new(0, 200, 0, 16)
+teleportDansShopButton.Position = UDim2.new(0.5, -100, 0, 200)
+teleportDansShopButton.Text = "Teleport To Dan's Shop (6)"
+teleportDansShopButton.TextSize = 12
+teleportDansShopButton.Parent = frame
+
+local teleportChurchButton = Instance.new("TextButton")
+teleportChurchButton.Size = UDim2.new(0, 200, 0, 16)
+teleportChurchButton.Position = UDim2.new(0.5, -100, 0, 230)
+teleportChurchButton.Text = "Teleport To Church (7)"
+teleportChurchButton.TextSize = 12
+teleportChurchButton.Parent = frame
 
 local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
 local workspace = game:GetService("Workspace")
@@ -321,7 +342,65 @@ local function antiAfk()
     end)
 end
 
+local function destroyTornadoOnStart()
+    local workspace = game:GetService("Workspace")
+
+    while true do
+        local tornado = workspace:FindFirstChild("TornadoModel")
+        if tornado then
+            tornado:Destroy()
+        end
+        wait(0.1)  -- Check every 0.1 second
+    end
+end
+
+local function teleportToShop(buildingModel, partName)
+    local building = buildingModel:FindFirstChild("building")
+    if building then
+        local danModel = building:FindFirstChild(partName)
+        if danModel then
+            local headPart = danModel:FindFirstChild("Signs")
+            if headPart and headPart:IsA("BasePart") then
+                rootPart.CFrame = CFrame.new(headPart.Position)
+            end
+        end
+    end
+end
+
+local function teleportToMachineShop()
+    local workspace = game:GetService("Workspace")
+    local buildingsFolder = workspace:WaitForChild("modelspoint")
+
+    for _, buildingModel in ipairs(buildingsFolder:GetChildren()) do
+        if buildingModel:IsA("Model") then
+            teleportToShop(buildingModel, "BUY_LEVER")
+        end
+    end
+end
+
+local function teleportToDansShop()
+    local workspace = game:GetService("Workspace")
+    local buildingsFolder = workspace:WaitForChild("modelspoint")
+
+    for _, buildingModel in ipairs(buildingsFolder:GetChildren()) do
+        if buildingModel:IsA("Model") then
+            teleportToShop(buildingModel, "Price")
+        end
+    end
+end
+
+local function teleportToChurch()
+    local vampireModel = workspace:FindFirstChild("Vampire")
+    if vampireModel and vampireModel:IsA("Model") then
+        local headPart = vampireModel:FindFirstChild("Head")
+        if headPart and headPart:IsA("BasePart") then
+            rootPart.CFrame = CFrame.new(headPart.Position)
+        end
+    end
+end
+
 antiAfk()
+destroyTornadoOnStart()
 
 startButton.MouseButton1Click:Connect(startScript)
 stopButton.MouseButton1Click:Connect(stopScript)
@@ -332,6 +411,9 @@ teleportGunsButton.MouseButton1Click:Connect(teleportGuns)
 teleportRareButton.MouseButton1Click:Connect(teleportRareItems)
 ammoButton.MouseButton1Click:Connect(unlimitedAmmo)
 lobbyButton.MouseButton1Click:Connect(returnToLobby)
+teleportMachineShopButton.MouseButton1Click:Connect(teleportToMachineShop)
+teleportDansShopButton.MouseButton1Click:Connect(teleportToDansShop)
+teleportChurchButton.MouseButton1Click:Connect(teleportToChurch)
 
 game:GetService("UserInputService").InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.U then
@@ -350,6 +432,12 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
         teleportRareItems()
     elseif input.KeyCode == Enum.KeyCode.Four then
         unlimitedAmmo()
+    elseif input.KeyCode == Enum.KeyCode.Five then
+        teleportToMachineShop()
+    elseif input.KeyCode == Enum.KeyCode.Six then
+        teleportToDansShop()
+    elseif input.KeyCode == Enum.KeyCode.Seven then
+        teleportToChurch()
     elseif input.KeyCode == Enum.KeyCode.L then
         returnToLobby()
     end
