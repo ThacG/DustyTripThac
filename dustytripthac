@@ -103,58 +103,99 @@ local lastStoppedChunk = 51
 local running = false
 local sandstormCFrame = CFrame.new(204.360123, 3.51325297, 7849.25732, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
+local function teleportAndLeaveIfDelayed()
+    local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+    rootPart.CFrame = CFrame.new(4.74696732, 11.550004, -130.936584, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+    wait(1)
+
+    local args = {"teleporterData", 1, 1}
+
+    game:GetService("ReplicatedStorage"):WaitForChild("NetworkEvents"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+
+    local teleportationCompleted = false
+
+    local teleportService = game:GetService("TeleportService")
+    local startTime = tick()
+
+    teleportService.TeleportInitFailed:Connect(function()
+        teleportationCompleted = true
+    end)
+
+    repeat
+        wait(0.1)
+        if tick() - startTime > 3 then
+            local leaveArgs = {"Leave_Teleporter", game:GetService("Players").LocalPlayer}
+            game:GetService("ReplicatedStorage"):WaitForChild("NetworkEvents"):WaitForChild("RemoteEvent"):FireServer(unpack(leaveArgs))
+            return
+        end
+    until teleportationCompleted
+
+    return true
+end
+
+local function inLobby()
+    return game.Workspace:FindFirstChild("Teleporters") ~= nil
+end
+
 local function startScript()
-    running = true
-    chunkNumber = lastStoppedChunk
-    local player = game.Players.LocalPlayer
-    while running do
-        local sandstorm = game.Workspace:FindFirstChild("SandStormEffect")
-        if sandstorm then
-            if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health < 20 then
-                chunkNumber = chunkNumber - 5
-                lastStoppedChunk = chunkNumber - 5
-                rootPart.CFrame = sandstormCFrame
-                while game.Workspace:FindFirstChild("SandStormEffect") do
-                repeat
-                    wait(0.1)
-                until player.Character.Humanoid.Health > 50
+    if inLobby() then
+        while true do
+            teleportAndLeaveIfDelayed()
+            wait(1)
+        end
+    else
+        running = true
+        chunkNumber = lastStoppedChunk
+        local player = game.Players.LocalPlayer
+        while running do
+            local sandstorm = game.Workspace:FindFirstChild("SandStormEffect")
+            if sandstorm then
+                if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health < 20 then
+                    chunkNumber = chunkNumber - 5
+                    lastStoppedChunk = chunkNumber - 5
+                    rootPart.CFrame = sandstormCFrame
+                    while game.Workspace:FindFirstChild("SandStormEffect") do
+                    repeat
+                        wait(0.1)
+                    until player.Character.Humanoid.Health > 50
+                        wait(0.1)
+                    end
+                else
+                    while not game.Workspace.points:FindFirstChild(tostring(chunkNumber)) do
+                        wait(0.01)
+                    end
+                    for i, v in pairs(game.Workspace.points:GetChildren()) do
+                        if v.Name == tostring(chunkNumber) then
+                            rootPart.CFrame = v.CFrame
+                            break
+                        end
+                    end
+                    chunkNumber = chunkNumber + 5
+                    lastStoppedChunk = chunkNumber
                     wait(0.1)
                 end
             else
-                while not game.Workspace.points:FindFirstChild(tostring(chunkNumber)) do
-                    wait(0.01)
-                end
-                for i, v in pairs(game.Workspace.points:GetChildren()) do
-                    if v.Name == tostring(chunkNumber) then
-                        rootPart.CFrame = v.CFrame
-                        break
+                if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health < 20 then
+                    chunkNumber = chunkNumber - 5
+                    lastStoppedChunk = chunkNumber - 5
+                    rootPart.CFrame = sandstormCFrame
+                    repeat
+                        wait(0.1)
+                    until player.Character.Humanoid.Health > 50
+                else
+                    while not game.Workspace.points:FindFirstChild(tostring(chunkNumber)) do
+                        wait(0.01)
                     end
-                end
-                chunkNumber = chunkNumber + 5
-                lastStoppedChunk = chunkNumber
-                wait(0.1)
-            end
-        else
-            if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health < 20 then
-                chunkNumber = chunkNumber - 5
-                lastStoppedChunk = chunkNumber - 5
-                rootPart.CFrame = sandstormCFrame
-                repeat
+                    for i, v in pairs(game.Workspace.points:GetChildren()) do
+                        if v.Name == tostring(chunkNumber) then
+                            rootPart.CFrame = v.CFrame
+                            break
+                        end
+                    end
+                    chunkNumber = chunkNumber + 5
+                    lastStoppedChunk = chunkNumber
                     wait(0.1)
-                until player.Character.Humanoid.Health > 50
-            else
-                while not game.Workspace.points:FindFirstChild(tostring(chunkNumber)) do
-                    wait(0.01)
                 end
-                for i, v in pairs(game.Workspace.points:GetChildren()) do
-                    if v.Name == tostring(chunkNumber) then
-                        rootPart.CFrame = v.CFrame
-                        break
-                    end
-                end
-                chunkNumber = chunkNumber + 5
-                lastStoppedChunk = chunkNumber
-                wait(0.1)
             end
         end
     end
