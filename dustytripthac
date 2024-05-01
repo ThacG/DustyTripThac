@@ -1,4 +1,4 @@
-local autoExecute = ...
+local autoExecute = true
 
 local queue_on_teleport = queue_on_teleport or syn.queue_on_teleport or fluxus.queue_on_teleport or function(...) return ... end
 
@@ -9,8 +9,7 @@ game.Players.LocalPlayer.OnTeleport:Connect(function(state)
             repeat task.wait() until game:IsLoaded()
             wait(2)
             if getgenv().Executed then return end
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/ThacG/DustyTripThac/main/dustytripthac"))(autoExecute)
-            getgenv().Executed = true
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ThacG/DustyTripThac/main/dustytripthac"))()
         ]])
     end
 end)
