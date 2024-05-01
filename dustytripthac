@@ -10,6 +10,7 @@ game.Players.LocalPlayer.OnTeleport:Connect(function(state)
             wait(2)
             if getgenv().Executed then return end
             loadstring(game:HttpGet("https://raw.githubusercontent.com/ThacG/DustyTripThac/main/dustytripthac"))(autoExecute)
+            getgenv().Executed = true
         ]])
     end
 end)
