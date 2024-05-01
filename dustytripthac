@@ -139,7 +139,10 @@ end
 
 local function startScript()
     if inLobby() then
-        teleportAndLeaveIfDelayed()
+        while true do
+            teleportAndLeaveIfDelayed()
+            wait(1)
+        end
     else
         running = true
         chunkNumber = lastStoppedChunk
