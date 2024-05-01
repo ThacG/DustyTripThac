@@ -342,7 +342,19 @@ local function antiAfk()
     end)
 end
 
+local function destroyTornado()
+    local workspace = game:GetService("Workspace")
+    while true do
+        local tornado = workspace:FindFirstChild("TornadoModel")
+        if tornado then
+            tornado:Destroy()
+        end
+        wait(0.1)
+    end
+end
+
 antiAfk()
+destroyTornado()
 
 startButton.MouseButton1Click:Connect(startScript)
 stopButton.MouseButton1Click:Connect(stopScript)
