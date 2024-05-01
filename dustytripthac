@@ -253,19 +253,17 @@ local function toggleVisibility()
 end
 
 local function teleportObjects(objectName)
-    local Item = workspace:FindFirstChild(objectName)
+    local workspaceChildren = game:GetService("Workspace"):GetChildren()
 
-    if Item then
-        local descendants = Item:GetDescendants()
-
-        for i = 1, #descendants do
-            local object = descendants[i]
-            if object:IsA("BasePart") then
-                object.CFrame = rootPart.CFrame
+    for _, child in ipairs(workspaceChildren) do
+        if child:IsA("Model") and child.Name == objectName then
+            local parts = child:GetChildren()
+            for _, part in ipairs(parts) do
+                if part:IsA("BasePart") then
+                    part.CFrame = rootPart.CFrame
+                end
             end
         end
-    else
-        print(objectName .. " object not found in Workspace")
     end
 end
 
