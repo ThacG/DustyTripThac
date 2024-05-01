@@ -134,15 +134,12 @@ local function teleportAndLeaveIfDelayed()
 end
 
 local function inLobby()
-    return game.Workspace:FindFirstChild("Teleporters") ~= nil
+    return game:GetService("Workspace"):FindFirstChild("Teleporters") ~= nil
 end
 
 local function startScript()
     if inLobby() then
-        while true do
-            teleportAndLeaveIfDelayed()
-            wait(1)
-        end
+        teleportAndLeaveIfDelayed()
     else
         running = true
         chunkNumber = lastStoppedChunk
