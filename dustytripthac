@@ -1,4 +1,5 @@
 local autoExecute = true
+local autoExecuteScript = true
 
 if not autoExecuteScript then
     autoExecute = false
