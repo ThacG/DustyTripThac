@@ -1,9 +1,9 @@
 local autoExecute = ...
 
 if autoExecuteScript then
-    local autoExecute = true
+    autoExecute = true
 else
-    local autoExecute = false
+    autoExecute = false
 end
 
 local queue_on_teleport = queue_on_teleport or syn.queue_on_teleport or fluxus.queue_on_teleport or function(...) return ... end
