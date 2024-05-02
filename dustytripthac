@@ -428,9 +428,18 @@ local function teleporttoShop_Dan()
         if building then
             local danModel = building:FindFirstChild("Price")
             if danModel then
-                local headPart = danModel:FindFirstChild("Signs")
-                if headPart and headPart:IsA("BasePart") then
-                    rootPart.CFrame = CFrame.new(headPart.Position)
+                local signs = danModel:FindFirstChild("Signs")
+                if signs then
+                    -- Check if there is more than one "Signs" part
+                    if signs:IsA("BasePart") then
+                        rootPart.CFrame = CFrame.new(signs.Position)
+                    elseif signs:IsA("Model") then
+                        local signsList = signs:GetChildren()
+                        if #signsList >= 2 then
+                            -- Teleport to the position of the second "Signs" part
+                            rootPart.CFrame = CFrame.new(signsList[2].Position)
+                        end
+                    end
                 end
             end
         end
