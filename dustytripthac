@@ -99,42 +99,42 @@ ammoButton.Parent = frame
 local shopButton_99 = Instance.new("TextButton")
 shopButton_99.Size = UDim2.new(0, 200, 0, 16)
 shopButton_99.Position = UDim2.new(0.5, -100, 0, 170)
-shopButton_99.Text = "Teleport To 99 Shop (5)"
+shopButton_99.Text = "TP To 99 Shop (5)"
 shopButton_99.TextSize = 12
 shopButton_99.Parent = frame
 
 local shopButton_Dan = Instance.new("TextButton")
 shopButton_Dan.Size = UDim2.new(0, 200, 0, 16)
-shopButton_Dan.Position = UDim2.new(0.5, -100, 0, 200)
-shopButton_Dan.Text = "Teleport To Dan's Shop (6)"
+shopButton_Dan.Position = UDim2.new(0.5, -200, 0, 50)
+shopButton_Dan.Text = "TP To Dan's Shop (6)"
 shopButton_Dan.TextSize = 12
 shopButton_Dan.Parent = frame
 
 local teleporttochurchButton = Instance.new("TextButton")
 teleporttochurchButton.Size = UDim2.new(0, 200, 0, 16)
 teleporttochurchButton.Position = UDim2.new(0.5, -100, 0, 230)
-teleporttochurchButton.Text = "Teleport To Church (7)"
+teleporttochurchButton.Text = "TP To Church (7)"
 teleporttochurchButton.TextSize = 12
 teleporttochurchButton.Parent = frame
 
 local teleportValuableButton = Instance.new("TextButton")
 teleportValuableButton.Size = UDim2.new(0, 200, 0, 16)
 teleportValuableButton.Position = UDim2.new(0.5, -100, 0, 260)
-teleportValuableButton.Text = "Teleport Valuable Items (8)"
+teleportValuableButton.Text = "TP Valuable Items (8)"
 teleportValuableButton.TextSize = 12
 teleportValuableButton.Parent = frame
 
 local teleportCapsButton = Instance.new("TextButton")
 teleportCapsButton.Size = UDim2.new(0, 200, 0, 16)
 teleportCapsButton.Position = UDim2.new(0.5, -100, 0, 290)
-teleportCapsButton.Text = "Teleport Bottle Caps (9)"
+teleportCapsButton.Text = "TP Bottle Caps (9)"
 teleportCapsButton.TextSize = 12
 teleportCapsButton.Parent = frame
 
 local thacButton = Instance.new("TextButton")
 thacButton.Size = UDim2.new(0, 200, 0, 16)
 thacButton.Position = UDim2.new(0.5, -100, 0, 320)
-thacButton.Text = "Made By thacy"
+thacButton.Text = "Made By Thac"
 thacButton.TextSize = 12
 thacButton.Parent = frame
 
