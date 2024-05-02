@@ -133,7 +133,7 @@ teleportCapsButton.Parent = frame
 
 local thacButton = Instance.new("TextButton")
 thacButton.Size = UDim2.new(0, 200, 0, 16)
-thacButton.Position = UDim2.new(0.5, -120, 0, 170)
+thacButton.Position = UDim2.new(0.5, 120, 0, 170)
 thacButton.Text = "Made By Thac"
 thacButton.TextSize = 12
 thacButton.Parent = frame
