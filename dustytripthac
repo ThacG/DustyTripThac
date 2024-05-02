@@ -23,8 +23,8 @@ gui.Name = "ScriptControls"
 gui.Parent = game.Players.LocalPlayer.PlayerGui
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 430, 0, 280)
-frame.Position = UDim2.new(0.5, -100, 0.9, -20)
+frame.Size = UDim2.new(0, 440, 0, 260)
+frame.Position = UDim2.new(0.5, 0, 0.9, 10)
 frame.AnchorPoint = Vector2.new(0.5, 1)
 frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 frame.BackgroundTransparency = 0.5
@@ -34,30 +34,30 @@ frame.Visible = false
 frame.Parent = gui
 
 local startButton = Instance.new("TextButton")
-startButton.Size = UDim2.new(0, 90, 0, 16)
-startButton.Position = UDim2.new(0, 5, 0, 0)
-startButton.Text = "Start (U)"
+startButton.Size = UDim2.new(0, 200, 0, 16)
+startButton.Position = UDim2.new(0.5, -210, 0, 10)
+startButton.Text = "Start Map Generation (U)"
 startButton.TextSize = 12
 startButton.Parent = frame
 
 local stopButton = Instance.new("TextButton")
-stopButton.Size = UDim2.new(0, 90, 0, 16)
-stopButton.Position = UDim2.new(1, -95, 0, 0)
-stopButton.Text = "Stop (O)"
+stopButton.Size = UDim2.new(0, 200, 0, 16)
+stopButton.Position = UDim2.new(0.5, 10, 0, 10)
+stopButton.Text = "Stop Map Generation (O)"
 stopButton.TextSize = 12
 stopButton.Parent = frame
 
 local homeButton = Instance.new("TextButton")
-homeButton.Size = UDim2.new(0, 90, 0, 16)
-homeButton.Position = UDim2.new(0, 5, 0, 20)
-homeButton.Text = "Home (P)"
+homeButton.Size = UDim2.new(0, 200, 0, 16)
+homeButton.Position = UDim2.new(0.5, -210, 0, 40)
+homeButton.Text = "TP To Home (P)"
 homeButton.TextSize = 12
 homeButton.Parent = frame
 
 local lobbyButton = Instance.new("TextButton")
-lobbyButton.Size = UDim2.new(0, 90, 0, 16)
-lobbyButton.Position = UDim2.new(1, -95, 0, 20)
-lobbyButton.Text = "Lobby (L)"
+lobbyButton.Size = UDim2.new(0, 200, 0, 16)
+lobbyButton.Position = UDim2.new(0.5, 10, 0, 40)
+lobbyButton.Text = "TP To Lobby (L)"
 lobbyButton.TextSize = 12
 lobbyButton.Parent = frame
 
@@ -70,72 +70,79 @@ toggleButton.Parent = gui
 
 local teleportFoodButton = Instance.new("TextButton")
 teleportFoodButton.Size = UDim2.new(0, 200, 0, 16)
-teleportFoodButton.Position = UDim2.new(0.5, -100, 0, 50)
+teleportFoodButton.Position = UDim2.new(0.5, -210, 0, 70)
 teleportFoodButton.Text = "TP Food (1)"
 teleportFoodButton.TextSize = 12
 teleportFoodButton.Parent = frame
 
 local teleportGunsButton = Instance.new("TextButton")
 teleportGunsButton.Size = UDim2.new(0, 200, 0, 16)
-teleportGunsButton.Position = UDim2.new(0.5, -100, 0, 80)
+teleportGunsButton.Position = UDim2.new(0.5, -210, 0, 100)
 teleportGunsButton.Text = "TP Guns & Ammo (2)"
 teleportGunsButton.TextSize = 12
 teleportGunsButton.Parent = frame
 
 local teleportRareButton = Instance.new("TextButton")
 teleportRareButton.Size = UDim2.new(0, 200, 0, 16)
-teleportRareButton.Position = UDim2.new(0.5, -100, 0, 110)
+teleportRareButton.Position = UDim2.new(0.5, -210, 0, 130)
 teleportRareButton.Text = "TP Rare Items (3)"
 teleportRareButton.TextSize = 12
 teleportRareButton.Parent = frame
 
 local ammoButton = Instance.new("TextButton")
 ammoButton.Size = UDim2.new(0, 200, 0, 16)
-ammoButton.Position = UDim2.new(0.5, -100, 0, 140)
+ammoButton.Position = UDim2.new(0.5, -210, 0, 160)
 ammoButton.Text = "Unlimited Ammo (4)"
 ammoButton.TextSize = 12
 ammoButton.Parent = frame
 
 local shopButton_99 = Instance.new("TextButton")
 shopButton_99.Size = UDim2.new(0, 200, 0, 16)
-shopButton_99.Position = UDim2.new(0.5, -100, 0, 170)
+shopButton_99.Position = UDim2.new(0.5, -210, 0, 190)
 shopButton_99.Text = "TP To 99 Shop (5)"
 shopButton_99.TextSize = 12
 shopButton_99.Parent = frame
 
 local shopButton_Dan = Instance.new("TextButton")
 shopButton_Dan.Size = UDim2.new(0, 200, 0, 16)
-shopButton_Dan.Position = UDim2.new(0.5, 120, 0, 50)
+shopButton_Dan.Position = UDim2.new(0.5, 10, 0, 70)
 shopButton_Dan.Text = "TP To Dan's Shop (6)"
 shopButton_Dan.TextSize = 12
 shopButton_Dan.Parent = frame
 
 local teleporttochurchButton = Instance.new("TextButton")
 teleporttochurchButton.Size = UDim2.new(0, 200, 0, 16)
-teleporttochurchButton.Position = UDim2.new(0.5, 120, 0, 80)
+teleporttochurchButton.Position = UDim2.new(0.5, 10, 0, 100)
 teleporttochurchButton.Text = "TP To Church (7)"
 teleporttochurchButton.TextSize = 12
 teleporttochurchButton.Parent = frame
 
 local teleportValuableButton = Instance.new("TextButton")
 teleportValuableButton.Size = UDim2.new(0, 200, 0, 16)
-teleportValuableButton.Position = UDim2.new(0.5, 120, 0, 110)
+teleportValuableButton.Position = UDim2.new(0.5, 10, 0, 130)
 teleportValuableButton.Text = "TP Valuable Items (8)"
 teleportValuableButton.TextSize = 12
 teleportValuableButton.Parent = frame
 
 local teleportCapsButton = Instance.new("TextButton")
 teleportCapsButton.Size = UDim2.new(0, 200, 0, 16)
-teleportCapsButton.Position = UDim2.new(0.5, 120, 0, 140)
+teleportCapsButton.Position = UDim2.new(0.5, 10, 0, 160)
 teleportCapsButton.Text = "TP Bottle Caps (9)"
 teleportCapsButton.TextSize = 12
 teleportCapsButton.Parent = frame
 
+local autoFarmButton = Instance.new("TextButton")
+autoFarmButton.Size = UDim2.new(0, 200, 0, 16)
+autoFarmButton.Position = UDim2.new(0.5, 10, 0, 190)
+autoFarmButton.Text = "Auto Farm (SOON) (0)"
+autoFarmButton.TextSize = 12
+autoFarmButton.Parent = frame
+
 local thacButton = Instance.new("TextButton")
-thacButton.Size = UDim2.new(0, 200, 0, 16)
-thacButton.Position = UDim2.new(0.5, 120, 0, 170)
+thacButton.Size = UDim2.new(0, 400, 0, 30)
+thacButton.Position = UDim2.new(0.5, -200, 0, 220)
 thacButton.Text = "Made By Thac"
-thacButton.TextSize = 12
+thacButton.TextSize = 20
 thacButton.Parent = frame
 
 local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
